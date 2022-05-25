@@ -9,7 +9,8 @@ const acceleration = 20
 const max_speed = 130
 const jump_height = -400
 var flipped = false
-
+var playerCanAttack = true
+var playerCanAttack2 = false
 
 
 func _physics_process(delta):
@@ -35,8 +36,9 @@ func _physics_process(delta):
 		friction = true
 		$AnimatedSprite.play("idle")
 		
-	if Input.is_action_pressed("ui_accept"):
-		$AnimatedSprite.play("attack")
+	if playerCanAttack:
+		if Input.is_action_pressed("ui_attack"):
+			$AnimatedSprite.play("attack")
 	if is_on_floor():
 		if Input.is_action_just_pressed("ui_up"):
 			motion.y = jump_height
@@ -56,4 +58,6 @@ func _physics_process(delta):
 		if friction == true:
 			motion.x = lerp(motion.x, 0,0.05)
 	motion = move_and_slide(motion, up)
-	pass
+	
+
+
