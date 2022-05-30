@@ -1,0 +1,91 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Tilesets/StarryNight/Spikes/spike_ground4.png" type="Texture" id=1]
+[ext_resource path="res://deathspike50.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 12.3693
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "ladolado"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -100, 0 ), Vector2( 0, 0 ) ]
+}
+
+[node name="deathball" type="Area2D"]
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+world_scene = "res://Scenes/Levels/Level-1namur.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Spike" type="Sprite" parent="."]
+position = Vector2( -6.18338, 0.47005 )
+rotation = -1.5708
+scale = Vector2( 0.902874, 0.727078 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Spike2" type="Sprite" parent="."]
+position = Vector2( 6.30582, 0.999999 )
+rotation = 1.5708
+scale = Vector2( 0.902874, 0.83232 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Spike3" type="Sprite" parent="."]
+position = Vector2( -0.384712, -8.16556 )
+scale = Vector2( 0.961316, 0.729305 )
+z_index = -1
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Spike4" type="Sprite" parent="."]
+position = Vector2( -0.357407, 9.13743 )
+rotation = -3.10494
+scale = Vector2( 0.826589, 0.599485 )
+z_index = -1
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "ladolado"
+anims/RESET = SubResource( 2 )
+anims/ladolado = SubResource( 3 )

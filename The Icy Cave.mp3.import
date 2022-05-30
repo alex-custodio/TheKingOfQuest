@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/The Icy Cave.mp3-df7e2a551e26d25ccef8208dd174d7f5.mp3str"
+
+[deps]
+
+source_file="res://The Icy Cave.mp3"
+dest_files=[ "res://.import/The Icy Cave.mp3-df7e2a551e26d25ccef8208dd174d7f5.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

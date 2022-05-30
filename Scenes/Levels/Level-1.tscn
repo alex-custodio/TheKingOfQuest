@@ -106,9 +106,6 @@ tile_data = PoolIntArray( 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0
 position = Vector2( 320, 147.333 )
 world_scene = "res://Scenes/Levels/Level-0.tscn"
 
-[node name="CollisionShape2D" parent="Tiles/water/Death" index="0"]
-position = Vector2( -64, 0 )
-
 [node name="MovingPlatform" parent="." instance=ExtResource( 1 )]
 
 [editable path="Tiles/water/Death"]

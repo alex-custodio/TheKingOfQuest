@@ -1,0 +1,63 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://deathh.gd" type="Script" id=1]
+[ext_resource path="res://Slime.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/Slime/SlimeWalk/slime-move-3.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Slime/SlimeWalk/slime-move-1.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Slime/SlimeDie/slime-die-0.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Slime/SlimeWalk/slime-move-2.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Slime/SlimeDie/slime-die-3.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Slime/SlimeWalk/slime-move-0.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Slime/SlimeDie/slime-die-1.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Slime/SlimeDie/slime-die-2.png" type="Texture" id=10]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 7 ) ],
+"loop": false,
+"name": "SlimeDie",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "SlimeWalk",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 9.33333, 2.33333 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16.6667, 3.89583 )
+
+[node name="ROBERTO" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 1.5, 1.5 )
+frames = SubResource( 1 )
+animation = "SlimeWalk"
+frame = 2
+playing = true
+flip_h = true
+
+[node name="killarea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killarea"]
+modulate = Color( 0.6, 0.258824, 0.788235, 1 )
+self_modulate = Color( 1, 0, 0, 1 )
+position = Vector2( -2.38419e-07, 2.5 )
+scale = Vector2( 1.5, 1.5 )
+shape = SubResource( 2 )
+
+[node name="deathh" type="Area2D" parent="."]
+position = Vector2( 0, 5 )
+script = ExtResource( 1 )
+world_scene = "res://Scenes/Levels/Level-2.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="deathh"]
+position = Vector2( 0, 6.84375 )
+scale = Vector2( 1.5, 1.5 )
+shape = SubResource( 3 )
+
+[connection signal="body_entered" from="killarea" to="." method="_on_killarea_body_entered"]

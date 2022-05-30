@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Tilesets/Tileset.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 31.5, 5 )
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("plat6:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "lado"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("plat6:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( -230, 0 ), Vector2( 0, 0 ) ]
+}
+
+[node name="plataform7" type="Node2D"]
+
+[node name="plat6" type="KinematicBody2D" parent="."]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="plat6"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 128, 96, 64, 32 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plat6"]
+position = Vector2( 0.5, -11 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "lado"
+anims/RESET = SubResource( 2 )
+anims/lado = SubResource( 3 )

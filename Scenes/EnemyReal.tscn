@@ -1,0 +1,74 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://Scripts/Death.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/KillEnemy.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/Skeleton/walk/11.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Skeleton/walk/12.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Skeleton/die/03.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Skeleton/walk/08.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Skeleton/die/11.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Skeleton/die/06.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Skeleton/walk/03.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Skeleton/die/12.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Skeleton/die/13.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Skeleton/die/07.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Skeleton/die/08.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Skeleton/die/05.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/Skeleton/walk/01.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/Skeleton/walk/02.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/Skeleton/walk/05.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/Skeleton/die/10.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/Skeleton/die/02.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/Skeleton/walk/04.png" type="Texture" id=20]
+[ext_resource path="res://Sprites/Skeleton/die/01.png" type="Texture" id=21]
+[ext_resource path="res://Sprites/Skeleton/die/04.png" type="Texture" id=22]
+[ext_resource path="res://Sprites/Skeleton/die/09.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/Skeleton/walk/06.png" type="Texture" id=24]
+[ext_resource path="res://Sprites/Skeleton/walk/07.png" type="Texture" id=25]
+[ext_resource path="res://Sprites/Skeleton/walk/09.png" type="Texture" id=26]
+[ext_resource path="res://Sprites/Skeleton/walk/10.png" type="Texture" id=27]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 9 ), ExtResource( 20 ), ExtResource( 17 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 6 ), ExtResource( 26 ), ExtResource( 3 ), ExtResource( 27 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "walk",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 21 ), ExtResource( 19 ), ExtResource( 5 ), ExtResource( 22 ), ExtResource( 14 ), ExtResource( 8 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 23 ), ExtResource( 18 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ), null, null, null, null, null, null, null, null, null, null, null, null, null ],
+"loop": false,
+"name": "die",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 2 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10, 17 )
+
+[node name="Enemy" type="Area2D"]
+scale = Vector2( 1.5, 1.5 )
+script = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "die"
+frame = 25
+playing = true
+
+[node name="killarea" type="Area2D" parent="."]
+position = Vector2( 0, -18 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killarea"]
+position = Vector2( 0, -1 )
+shape = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource( 1 )
+world_scene = "res://Scenes/Levels/Level-0.tscn"
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 3 )
+
+[connection signal="body_entered" from="killarea" to="." method="_on_killarea_body_entered"]

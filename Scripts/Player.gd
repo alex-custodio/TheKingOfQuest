@@ -19,26 +19,28 @@ func _physics_process(delta):
 	var friction = false
 	if Input.is_action_pressed("ui_right"):
 		flipped = false
+		$AnimatedSprite.flip_h = false
 		motion.x = min(motion.x+acceleration, max_speed)
 		$AnimatedSprite.play("walk-right")
 		
 	elif Input.is_action_pressed("ui_left"):
 		flipped = true
 		motion.x = max(motion.x-acceleration, -max_speed)
-		$AnimatedSprite.play("walk-left")
+		$AnimatedSprite.flip_h = true
+		$AnimatedSprite.play("walk-right")
 		
 		
 	else:
-		if flipped == true:
-			$AnimatedSprite.flip_h = true
-		elif flipped == false:
-			$AnimatedSprite.flip_h = false
+		#if flipped == true:
+		#	$AnimatedSprite.flip_h = true
+		#elif flipped == false:
+		#	$AnimatedSprite.flip_h = false
 		friction = true
 		$AnimatedSprite.play("idle")
 		
-	if playerCanAttack:
-		if Input.is_action_pressed("ui_attack"):
-			$AnimatedSprite.play("attack")
+	#if playerCanAttack:
+		#if Input.is_action_pressed("ui_attack"):
+			#$AnimatedSprite.play("attack")
 	if is_on_floor():
 		if Input.is_action_just_pressed("ui_up"):
 			motion.y = jump_height
